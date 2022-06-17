@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TechnicEngeneeringModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="component">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_material" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="id_technic" Type="Int32" Nullable="false" />
+    <Property Name="volume" Type="Double" Nullable="false" />
+    <NavigationProperty Name="technic_types" Relationship="Self.FK_components_device_types" FromRole="components" ToRole="technic_types" />
+    <NavigationProperty Name="material" Relationship="Self.FK_components_materials" FromRole="components" ToRole="materials" />
+  </EntityType>
+  <EntityType Name="employee">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="middleName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="position" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="users" Relationship="Self.FK_users_employees" FromRole="employees" ToRole="users" />
+  </EntityType>
+  <EntityType Name="material">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="pricePerCent" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="components" Relationship="Self.FK_components_materials" FromRole="materials" ToRole="components" />
+  </EntityType>
+  <EntityType Name="technic_types">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="components" Relationship="Self.FK_components_device_types" FromRole="technic_types" ToRole="components" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="login" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="employeeid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="employee" Relationship="Self.FK_users_employees" FromRole="users" ToRole="employees" />
+  </EntityType>
+  <Association Name="FK_components_device_types">
+    <End Role="technic_types" Type="Self.technic_types" Multiplicity="1" />
+    <End Role="components" Type="Self.component" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="technic_types">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="components">
+        <PropertyRef Name="id_technic" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_components_materials">
+    <End Role="materials" Type="Self.material" Multiplicity="1" />
+    <End Role="components" Type="Self.component" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="materials">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="components">
+        <PropertyRef Name="id_material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_employees">
+    <End Role="employees" Type="Self.employee" Multiplicity="1" />
+    <End Role="users" Type="Self.user" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="employeeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TechnicEngeneeringEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="components" EntityType="Self.component" />
+    <EntitySet Name="employees" EntityType="Self.employee" />
+    <EntitySet Name="materials" EntityType="Self.material" />
+    <EntitySet Name="technic_types" EntityType="Self.technic_types" />
+    <EntitySet Name="users" EntityType="Self.user" />
+    <AssociationSet Name="FK_components_device_types" Association="Self.FK_components_device_types">
+      <End Role="technic_types" EntitySet="technic_types" />
+      <End Role="components" EntitySet="components" />
+    </AssociationSet>
+    <AssociationSet Name="FK_components_materials" Association="Self.FK_components_materials">
+      <End Role="materials" EntitySet="materials" />
+      <End Role="components" EntitySet="components" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_employees" Association="Self.FK_users_employees">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="20e16075860f4a3990964459228f3b2b" Name="Diagram1">
+        <EntityTypeShape EntityType="TechnicEngeneeringModel.component" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnicEngeneeringModel.employee" Width="1.5" PointX="2.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnicEngeneeringModel.material" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnicEngeneeringModel.technic_types" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TechnicEngeneeringModel.user" Width="1.5" PointX="5" PointY="5" IsExpanded="true" />
+        <AssociationConnector Association="TechnicEngeneeringModel.FK_components_device_types" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnicEngeneeringModel.FK_components_materials" ManuallyRouted="false" />
+        <AssociationConnector Association="TechnicEngeneeringModel.FK_users_employees" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

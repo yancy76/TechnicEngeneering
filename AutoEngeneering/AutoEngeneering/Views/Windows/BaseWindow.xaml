@@ -1,0 +1,45 @@
+﻿<Window x:Class="AutoEngeneering.Views.Windows.BaseWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoEngeneering.Views.Windows"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="BaseWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="215" />
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Image Source="../../Resources/icon.jpg" Width="50" VerticalAlignment="Center" Margin="10 0 0 0" />
+            <TextBlock Text="Detail Industry" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 0 0"/>
+        </StackPanel>
+
+        <Button x:Name="ExitButton" Content="Выход" Click="ExitButton_Click" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Width="150" Height="30" Margin="0 0 10 0"/>
+        <TextBlock Text="Пользователи" Grid.Column="1" HorizontalAlignment="Left" Margin="30 0 0 0" VerticalAlignment="Center" FontSize="20"/>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="UsersButton" Content="Пользователи" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="30" Grid.Row="0" Click="UsersButton_Click"/>
+            <Button x:Name="EmployeesButton" Content="Сотрудники" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="30" Grid.Row="1" Click="EmployeesButton_Click"/>
+            <Button x:Name="MaterialsButton" Content="Материалы" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="30" Grid.Row="2" Click="MaterialsButton_Click"/>
+            <Button x:Name="ComponentsButton" Content="Детали" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="30" Grid.Row="3" Click="ComponentsButton_Click"/>
+            <Button x:Name="DevicesTypesButton" Content="Техника" VerticalAlignment="Center" HorizontalAlignment="Center" Width="150" Height="30" Grid.Row="4" Click="DevicesTypesButton_Click"/>
+        </Grid>
+
+        <Frame x:Name="FrameBox" NavigationUIVisibility="Hidden" Grid.Row="1" Grid.Column="1" />
+    </Grid>
+</Window>

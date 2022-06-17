@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище TechnicEngeneeringModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="components">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_material" Type="int" Nullable="false" />
+    <Property Name="title" Type="varchar(max)" Nullable="false" />
+    <Property Name="id_technic" Type="int" Nullable="false" />
+    <Property Name="volume" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="employees">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="firstName" Type="varchar(max)" Nullable="false" />
+    <Property Name="lastName" Type="varchar(max)" Nullable="false" />
+    <Property Name="middleName" Type="varchar(max)" Nullable="false" />
+    <Property Name="position" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+  </EntityType>
+  <EntityType Name="materials">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="varchar(max)" Nullable="false" />
+    <Property Name="pricePerCent" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="technic_types">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="login" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="employeeid" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_components_device_types">
+    <End Role="technic_types" Type="Self.technic_types" Multiplicity="1" />
+    <End Role="components" Type="Self.components" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="technic_types">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="components">
+        <PropertyRef Name="id_technic" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_components_materials">
+    <End Role="materials" Type="Self.materials" Multiplicity="1" />
+    <End Role="components" Type="Self.components" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="materials">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="components">
+        <PropertyRef Name="id_material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_users_employees">
+    <End Role="employees" Type="Self.employees" Multiplicity="1" />
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="employees">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="employeeid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище TechnicEngeneeringModelContainer">
+    <EntitySet Name="components" EntityType="Self.components" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="employees" EntityType="Self.employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="materials" EntityType="Self.materials" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="technic_types" EntityType="Self.technic_types" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_components_device_types" Association="Self.FK_components_device_types">
+      <End Role="technic_types" EntitySet="technic_types" />
+      <End Role="components" EntitySet="components" />
+    </AssociationSet>
+    <AssociationSet Name="FK_components_materials" Association="Self.FK_components_materials">
+      <End Role="materials" EntitySet="materials" />
+      <End Role="components" EntitySet="components" />
+    </AssociationSet>
+    <AssociationSet Name="FK_users_employees" Association="Self.FK_users_employees">
+      <End Role="employees" EntitySet="employees" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,42 @@
+﻿<Window x:Class="AutoEngeneering.Views.Windows.Editors.EmployeeEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutoEngeneering.Views.Windows.Editors"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="Редактор" Height="550" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.7*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Редактор сотрудника" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24" Grid.ColumnSpan="2"/>
+
+        <TextBlock Text="Имя" Grid.Row="1" FontSize="20" />
+        <TextBox x:Name="FirstNameBox" Grid.Row="1" Grid.Column="1" />
+
+        <TextBlock Text="Фамилия" Grid.Row="2" FontSize="20" />
+        <TextBox x:Name="LastName" Grid.Row="2" Grid.Column="1" />
+
+        <TextBlock Text="Отчество" Grid.Row="3" FontSize="20" />
+        <TextBox x:Name="MiddleName" Grid.Row="3" Grid.Column="1"/>
+
+        <TextBlock Text="Должность" Grid.Row="4" FontSize="20" />
+        <ComboBox x:Name="PositionBox" Grid.Row="4" Grid.Column="1">
+            <ComboBoxItem Content="Администратор" Tag="1"/>
+            <ComboBoxItem Content="Инженер" Tag="2"/>
+        </ComboBox>
+
+        <Button x:Name="saveButton" Content="Сохранить" Grid.Row="5" Grid.ColumnSpan="2" Click="saveButton_Click"/>
+    </Grid>
+</Window>
